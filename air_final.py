@@ -15,16 +15,19 @@ from sklearn.metrics import mean_squared_error
 from sklearn.linear_model import LinearRegression
 
 # convert an array of values into a dataset matrix
+
+
 def create_dataset(dataset, look_back=1):
-	dataX, dataY = [], []
-	for i in range(len(dataset)-look_back-1):
+    dataX, dataY = [], []
+    for i in range(len(dataset)-look_back-1):
 		a = dataset[i:(i+look_back), 0]
 		dataX.append(a)
 		dataY.append(dataset[i + look_back, 0])
-	return numpy.array(dataX), numpy.array(dataY)
+    return numpy.array(dataX), numpy.array(dataY)
 
 # fix random seed for reproducibility
 numpy.random.seed(7)
+
 
 # load the dataset
 #dataframe = read_csv('c:/anaconda35/mydata/airline-passengers.csv', usecols=[1], engine='python', skipfooter=3)
@@ -103,9 +106,8 @@ testPredictPlot = numpy.empty_like(dataset)
 testPredictPlot[:, :] = numpy.nan
 
 
-
 # plot baseline and predictions
 plt.plot(scaler.inverse_transform(dataset))
 plt.plot(trainPredictPlot)
 plt.plot(testPredictPlot)
-#plt.show()
+plt.show()
