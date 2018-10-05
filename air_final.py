@@ -20,18 +20,19 @@ from sklearn.linear_model import LinearRegression
 def create_dataset(dataset, look_back=1):
     dataX, dataY = [], []
     for i in range(len(dataset)-look_back-1):
-		a = dataset[i:(i+look_back), 0]
-		dataX.append(a)
-		dataY.append(dataset[i + look_back, 0])
+        a = dataset[i:(i+look_back), 0]
+    dataX.append(a)
+    dataY.append(dataset[i + look_back, 0])
     return numpy.array(dataX), numpy.array(dataY)
+
 
 # fix random seed for reproducibility
 numpy.random.seed(7)
 
 
 # load the dataset
-#dataframe = read_csv('c:/anaconda35/mydata/airline-passengers.csv', usecols=[1], engine='python', skipfooter=3)
-#dataframe = read_csv('c:/anaconda35/mydata/nsn_1.csv', usecols=[1], engine='python', skipfooter=3)
+# dataframe = read_csv('c:/anaconda35/mydata/airline-passengers.csv', usecols=[1], engine='python', skipfooter=3)
+# dataframe = read_csv('c:/anaconda35/mydata/nsn_1.csv', usecols=[1], engine='python', skipfooter=3)
 dataframe = read_csv('data_1.csv', usecols=[1], engine='python', skipfooter=3)
 dataset = dataframe.values
 dataset = dataset.astype('float32')
@@ -47,12 +48,12 @@ trend = model.predict(X)
 # plot trend
 plt.plot(y)
 plt.plot(trend)
-#plt.show()
+# plt.show()
 # detrend
 detrended = [y[i]-trend[i] for i in range(0, len(dataframe))]
 # plot detrended
 plt.plot(detrended)
-#plt.show()
+# plt.show()
 
 
 # normalize the dataset
@@ -62,7 +63,7 @@ dataset = scaler.fit_transform(dataset)
 # split into train and test sets
 train_size = int(len(dataset) * 0.67)
 test_size = len(dataset) - train_size
-train, test = dataset[0:train_size,:], dataset[train_size:len(dataset),:]
+train, test = dataset[0:train_size, :], dataset[train_size:len(dataset), :]
 
 # reshape into X=t and Y=t+1
 look_back = 1
@@ -91,10 +92,10 @@ testPredict = scaler.inverse_transform(testPredict)
 testY = scaler.inverse_transform([testY])
 
 # calculate root mean squared error
-trainScore = math.sqrt(mean_squared_error(trainY[0], trainPredict[:,0]))
-print('Train Score: %.2f RMSE' % (trainScore))
-testScore = math.sqrt(mean_squared_error(testY[0], testPredict[:,0]))
-print('Test Score: %.2f RMSE' % (testScore))
+trainScore = math.sqrt(mean_squared_error(trainY[0], trainPredict[:, 0]))
+print('Train Score: %.2f RMSE' % trainScore)
+testScore = math.sqrt(mean_squared_error(testY[0], testPredict[:, 0]))
+print('Test Score: %.2f RMSE' % testScore)
 
 # shift train predictions for plotting
 trainPredictPlot = numpy.empty_like(dataset)
