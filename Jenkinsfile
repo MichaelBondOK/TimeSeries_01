@@ -6,7 +6,7 @@ pipeline {
         stage('build') {
             steps {
                 sh 'python --version'
-                sh 'python air_final.py'
+                sh 'pip --version'
             }
         }
     }
