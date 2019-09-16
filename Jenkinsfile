@@ -9,6 +9,8 @@ pipeline {
         stage('prep') {
             steps {
                 sh 'python --version'
+                sh 'pip install --upgrade pip'
+                sh 'pip --version'
                 sh 'echo "Installing Dependencies."'
                 sh 'pip install -r requirements.txt'
             }
