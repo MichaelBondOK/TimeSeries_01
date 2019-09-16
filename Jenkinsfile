@@ -10,7 +10,7 @@ pipeline {
             steps {
                 sh 'python --version'
                 sh 'echo "Installing Dependencies."'
-                sh sudo -H pip install -r requirements.txt'
+                sh 'sudo -H pip install -r requirements.txt'
             }
         }
         stage('build'){
