@@ -111,4 +111,5 @@ testPredictPlot[:, :] = numpy.nan
 plt.plot(scaler.inverse_transform(dataset))
 plt.plot(trainPredictPlot)
 plt.plot(testPredictPlot)
-plt.show()
+# plt.show()
+plt.savefig('/var/tmp/plot.png')
