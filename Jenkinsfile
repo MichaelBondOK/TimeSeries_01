@@ -20,7 +20,10 @@ pipeline {
                 sh 'echo "Run Model"'
                 sh 'python air_final.py'
             }
-
         }
+        stage('report')
+            steps{
+            splunkins.archive("**/*.log", null, false, "10MB")
+               }
     }
 }
