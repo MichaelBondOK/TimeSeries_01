@@ -22,8 +22,8 @@ pipeline {
             }
         }
         stage('report'){
-            steps{
+            steps {
                 splunkins.archive("**/*.log", null, false, "10MB")
-               }
+             }
     }
 }
