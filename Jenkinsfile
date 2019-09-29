@@ -21,9 +21,9 @@ pipeline {
                 sh 'python air_final.py'
             }
         }
-        stage('report')
+        stage('report'){
             steps{
-            splunkins.archive("**/*.log", null, false, "10MB")
+                splunkins.archive("**/*.log", null, false, "10MB")
                }
     }
 }
